@@ -7,11 +7,15 @@ exec { 'update server':
   provider => 'shell',
 }
 
+->
+
 # Install nginx web-server
 package { 'nginx':
   ensure   => present,
   provider => 'apt'
 }
+
+->
 
 # creating a custom HTTP header response
 file_line { 'add HTTP header':
@@ -20,6 +24,8 @@ file_line { 'add HTTP header':
   after  => 'listen 80 default_server;',
   line   => 'add_header X-Served-By $hostname;'
 }
+
+->
 
 # Restart service
 service { 'nginx':
