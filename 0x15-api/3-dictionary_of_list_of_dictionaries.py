@@ -14,5 +14,5 @@ if __name__ == "__main__":
                 "completed": tit.get("completed"),
                 "username": u.get("username")
             } for tit in requests.get(url + "todos",
-                                    params={"userId": u.get("id")}).json()]
+                                      params={"userId": u.get("id")}).json()]
             for u in users}, jsonfile)
